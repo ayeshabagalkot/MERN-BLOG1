@@ -9,7 +9,6 @@ export const authenticate = async (req, res, next) => {
         req.user = decodeToken
         next()
     } catch (error) {
-        console.log("yikessssssssss");
         next(500, error.message)
     }
 }

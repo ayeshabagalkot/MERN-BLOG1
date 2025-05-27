@@ -7,12 +7,12 @@ export const Register = async (req, res, next) => {
         const { name, email, password } = req.body
         const checkuser = await User.findOne({ email })
         if (checkuser) {
-            // user already registered 
+            // user already registered
             next(handleError(409, 'User already registered.'))
         }
 
         const hashedPassword = bcryptjs.hashSync(password)
-        // register user  
+        // register user
         const user = new User({
             name, email, password: hashedPassword
         })
@@ -48,7 +48,8 @@ export const Login = async (req, res, next) => {
             _id: user._id,
             name: user.name,
             email: user.email,
-            avatar: user.avatar
+            avatar: user.avatar,
+            role: user.role
         }, process.env.JWT_SECRET)
 
 
@@ -78,7 +79,7 @@ export const GoogleLogin = async (req, res, next) => {
         let user
         user = await User.findOne({ email })
         if (!user) {
-            //  create new user 
+            //  create new user
             const password = Math.random().toString()
             const hashedPassword = bcryptjs.hashSync(password)
             const newUser = new User({

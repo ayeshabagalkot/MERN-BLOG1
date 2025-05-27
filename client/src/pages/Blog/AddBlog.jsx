@@ -85,6 +85,7 @@ const AddBlog = () => {
             })
             const data = await response.json()
             if (!response.ok) {
+                console.log("hello");
                 return showToast('error', data.message)
             }
             form.reset()

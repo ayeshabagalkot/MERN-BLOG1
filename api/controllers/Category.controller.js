@@ -5,7 +5,6 @@ import slugify from "slugify";
 // Create Category
 export const addCategory = async (req, res, next) => {
     try {
-        console.log("yikes");
         const { name, slug } = req.body;
 
         if (!name) {
@@ -30,8 +29,6 @@ export const addCategory = async (req, res, next) => {
         console.error("Error creating category:", error);
         next(handleError(500, error.message));
     }
-    console.log("Received category name:", name);
-    console.log("Received slug:", slug);
 };
 
 // Show One Category
