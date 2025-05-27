@@ -44,7 +44,8 @@ const AddCategory = () => {
             const response = await fetch(`${getEvn('VITE_API_BASE_URL')}/category/add`, {
                 method: 'post',
                 headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(values)
+                body: JSON.stringify(values),
+                credentials: 'include'
             })
             const data = await response.json()
             if (!response.ok) {
