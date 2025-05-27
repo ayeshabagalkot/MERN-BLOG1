@@ -20,7 +20,7 @@ export const addBlog = async (req, res, next) => {
 
             featuredImage = uploadResult.secure_url
         }
-        
+
         const blog = new Blog({
             author: data.author,
             category: data.category,

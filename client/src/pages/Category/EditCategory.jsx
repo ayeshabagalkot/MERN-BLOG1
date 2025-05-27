@@ -48,7 +48,7 @@ const EditCategory = () => {
 
     useEffect(() => {
         if (categoryData) {
-           
+
             form.setValue('name', categoryData.category.name)
             form.setValue('slug', categoryData.category.slug)
         }
@@ -59,13 +59,14 @@ const EditCategory = () => {
             const response = await fetch(`${getEvn('VITE_API_BASE_URL')}/category/update/${category_id}`, {
                 method: 'put',
                 headers: { 'Content-type': 'application/json' },
-                body: JSON.stringify(values)
+                body: JSON.stringify(values),
+                credentials: 'include'
             })
             const data = await response.json()
             if (!response.ok) {
                 return showToast('error', data.message)
             }
-            
+
             showToast('success', data.message)
         } catch (error) {
             showToast('error', error.message)
